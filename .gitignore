@@ -1,0 +1,61 @@
+# =====================
+# Python
+# =====================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+.venv/
+.env/
+.envrc
+
+# =====================
+# macOS
+# =====================
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# =====================
+# Editor / IDE
+# =====================
+.vscode/
+.idea/
+*.swp
+
+# =====================
+# Data files (important)
+# =====================
+data/
+!data/.gitkeep
+*.csv
+*.parquet
+*.sqlite
+
+# =====================
+# Logs & temp files
+# =====================
+*.log
+*.tmp
+
+# =====================
+# Streamlit
+# =====================
+.streamlit/
+
+# =====================
+# dbt (later, but safe now)
+# =====================
+dbt/target/
+dbt/logs/
+
+# =====================
+# Secrets / credentials
+# =====================
+*.env
+*.key
+*.pem
