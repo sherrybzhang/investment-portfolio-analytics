@@ -2,22 +2,26 @@ import os
 from sqlalchemy import create_engine, text
 
 def build_db_url() -> str:
-  '''
-  Build a PostgreSQL connection string from environmental variables.
+  """
+  Build a PostgreSQL connection string from environment variables.
   Falls back to local defaults (localhost, 5432, portfolio_db) unless specified.
-  Returns SQLAlchemy-compatible connection string.
-  '''
+  Returns a SQLAlchemy-compatible connection string.
+  """
   user = os.getenv("PGUSER", os.getenv("USER", ""))
-  password = os.getenv("PGPASSWORD", os.getenv("PASSWORD", ""))
+  password = os.getenv("PGPASSWORD", "")
   host = os.getenv("PGHOST", "localhost")
-  port = os.getenv("PGPOST", 5432)
+  port = os.getenv("PGPORT", "5432")
   dbname = os.getenv("PGDATABASE", "portfolio_db")
 
   auth = f"{user}:{password}" if password else f"{user}"
-  return f"postresql+psycopg://{auth}@{host}:{port}/{dbname}"
+  return f"postgresql+psycopg://{auth}@{host}:{port}/{dbname}"
 
 def main() -> None:
-  return
+  # Create engine to open a database connection
+  engine = create_engine(build_db_url(), future=True)
+  with engine.connect() as conn:
+    result = conn.execute(text("SELECT 1"))
+    print(f"Connection OK, SELECT 1 -> {result.scalar()}")
 
 if __name__ == "__main__":
   main()
