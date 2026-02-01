@@ -1,19 +1,7 @@
 import sys
 import pandas as pd
 from sqlalchemy import create_engine
-from test_db_connection import build_db_url
-
-def normalize_columns(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Normalize column names (e.g., lowercase, underscores).
-    """
-    new_cols = []
-    for col in df.columns:
-        cleaned = col.strip().lower().replace(" ", "_")
-        new_cols.append(cleaned)
-
-    df.columns = new_cols
-    return df
+from utils import build_db_url, normalize_columns
 
 def validate_price_columns(df: pd.DataFrame) -> pd.DataFrame:
     """
