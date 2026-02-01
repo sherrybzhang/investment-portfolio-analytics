@@ -2,4 +2,4 @@ pandas
 numpy
 sqlalchemy
 psycopg
-streamlit
+streamlitblack
