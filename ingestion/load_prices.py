@@ -1,4 +1,3 @@
-import os
 import sys
 import pandas as pd
 from sqlalchemy import create_engine
@@ -36,11 +35,29 @@ def load_prices(csv_path: str) -> int:
     Read a CSV and load rows into the prices table.
     Returns the number of rows loaded.
     """
+    df = pd.read_csv(csv_path)
+    df = normalize_columns(df)
+    df = validate_price_columns(df)
 
+    engine = create_engine(build_db_url(), future=True)
+    # Insert data into Postgres
+    df.to_sql(
+        "prices",
+        engine,
+        if_exists="append",
+        index=False,
+        method="multi",
+        chunksize=1000
+    )
+    return len(df)
 
 def main() -> None:
-    return
-
+    if len(sys.argv) < 2:
+        print("Usage: python ingestion/load_prices.py data/prices.csv")
+        return
+    csv_path = sys.argv[1]
+    rows = load_prices(csv_path)
+    print(f"Loaded {rows} rows into prices")
 
 if __name__ == "__main__":
     main()
