@@ -1,7 +1,6 @@
 import os
 from sqlalchemy import create_engine, text
 
-
 def build_db_url() -> str:
     """
     Build a PostgreSQL connection string from environment variables.
