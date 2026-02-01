@@ -3,7 +3,6 @@ import pandas as pd
 from sqlalchemy import create_engine
 from utils import build_db_url, normalize_columns
 
-
 def validate_holdings_columns(df: pd.DataFrame) -> pd.DataFrame:
     """
     Ensure required columns exist and coerce types as needed.
