@@ -18,7 +18,7 @@ def normalize_columns(df: pd.DataFrame) -> pd.DataFrame:
 def validate_price_columns(df: pd.DataFrame) -> pd.DataFrame:
     """
     Ensure required columns exist and coerce types as needed.
-    Returns a cleaned DataFrame with only required columns
+    Returns a cleaned DataFrame with only required columns.
     """
     required_columns = {"date", "symbol", "close_price"}
     missing_columns = required_columns - set(df.columns)
@@ -40,7 +40,6 @@ def load_prices(csv_path: str) -> int:
     df = validate_price_columns(df)
 
     engine = create_engine(build_db_url(), future=True)
-    # Insert data into Postgres
     df.to_sql(
         "prices",
         engine,
