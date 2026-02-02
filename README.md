@@ -1,6 +1,6 @@
 # Investment Portfolio Analytics
 
-An investment performance reporting platform that tracks portfolio value over time, compares results to benchmarks, and surfaces allocation and drawdown insights. The focus is analytics and reporting (not trading or alpha generation), modeled after asset/wealth management workflows.
+An investment performance analytics platform that tracks portfolio value over time, compares results to benchmarks, and surfaces allocation and drawdown insights. The focus is analytics and reporting (not trading or alpha generation), modeled after asset/wealth management workflows.
 
 ## Features
 - Portfolio performance tracking (value, returns)
